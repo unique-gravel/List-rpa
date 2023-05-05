@@ -141,7 +141,7 @@
         <InArgument x:TypeArguments="scg:List(x:String)">[AllCities]</InArgument>
       </InvokeMethod.TargetObject>
     </InvokeMethod>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="510.4,540.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[AllCities]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each - convert each city to proper case" sap:VirtualizedContainerService.HintSize="510.4,540.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[AllCities]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
@@ -153,7 +153,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign DisplayName="Assign - convert and store to temp variable" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[ProperCaseTemp]</OutArgument>
               </Assign.To>
@@ -161,7 +161,7 @@
                 <InArgument x:TypeArguments="x:String">[System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(City.ToLower)]</InArgument>
               </Assign.Value>
             </Assign>
-            <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[AllCitiesProperCase]" DisplayName="Append items to collection" sap:VirtualizedContainerService.HintSize="433.6,141.6" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_2">
+            <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[AllCitiesProperCase]" DisplayName="Append items to collection - temp variable to result collection" sap:VirtualizedContainerService.HintSize="433.6,141.6" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_2">
               <uasc:AppendItemToCollection.Items>
                 <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                   <InArgument x:TypeArguments="x:String">[ProperCaseTemp]</InArgument>
