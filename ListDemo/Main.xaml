@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="824,602.4" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uasc="clr-namespace:UiPath.Activities.System.Collections;assembly=UiPath.System.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="824,1328" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uasc="clr-namespace:UiPath.Activities.System.Collections;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -31,6 +31,7 @@
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Globalization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -82,20 +83,44 @@
       <AssemblyReference>System.Linq.Parallel</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="496,375.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="572.8,1263.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(Of String) From {&quot;MADRID&quot;, &quot;valencia&quot;, &quot;BARCELONA&quot;}]" Name="SpainCities" />
-      <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(of String)]" Name="UKCities" />
-      <Variable x:TypeArguments="scg:List(x:String)" Name="AllCities" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="SpainCities">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List(of String) From {&quot;MADRID&quot;, &quot;valencia&quot;, &quot;BARCELONA&quot;}" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="UKCities">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List(Of String)" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="AllCities">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List(Of String)" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="AllCitiesProperCase">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List(Of String)" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="ProperCaseTemp" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[UKCities]" DisplayName="Append items to collection" sap:VirtualizedContainerService.HintSize="433.6,141.6" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_1">
+    <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[UKCities]" DisplayName="Append items to collection - UKCities" sap:VirtualizedContainerService.HintSize="510.4,141.6" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_1">
       <uasc:AppendItemToCollection.Items>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
           <InArgument x:TypeArguments="x:String">London</InArgument>
@@ -103,7 +128,7 @@
         </scg:List>
       </uasc:AppendItemToCollection.Items>
     </uasc:AppendItemToCollection>
-    <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Assign - get all cities from spain and UK" sap:VirtualizedContainerService.HintSize="510.4,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:List(x:String)">[AllCities]</OutArgument>
       </Assign.To>
@@ -111,5 +136,42 @@
         <InArgument x:TypeArguments="scg:List(x:String)">[Enumerable.Concat(SpainCities.AsEnumerable, UKCities.AsEnumerable).ToList]</InArgument>
       </Assign.Value>
     </Assign>
+    <InvokeMethod DisplayName="Invoke Method - sort all cities list" sap:VirtualizedContainerService.HintSize="510.4,134.4" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Sort">
+      <InvokeMethod.TargetObject>
+        <InArgument x:TypeArguments="scg:List(x:String)">[AllCities]</InArgument>
+      </InvokeMethod.TargetObject>
+    </InvokeMethod>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="510.4,540.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[AllCities]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="City" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="476.8,352.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[ProperCaseTemp]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(City.ToLower)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[AllCitiesProperCase]" DisplayName="Append items to collection" sap:VirtualizedContainerService.HintSize="433.6,141.6" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_2">
+              <uasc:AppendItemToCollection.Items>
+                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                  <InArgument x:TypeArguments="x:String">[ProperCaseTemp]</InArgument>
+                </scg:List>
+              </uasc:AppendItemToCollection.Items>
+            </uasc:AppendItemToCollection>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[String.Join(&quot;, &quot;, AllCitiesProperCase)]" />
   </Sequence>
 </Activity>
